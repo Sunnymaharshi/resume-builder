@@ -6,84 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maharshi Reddy Tangasani - Resume</title>
     <style>
-        /* Base styling */
+        /* Base document setup mimicking standard A4/Letter PDF print */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 10.5pt;
-            line-height: 1.4;
-            color: #111;
+            font-family: 'Calibri', 'Arial', 'Helvetica', sans-serif;
+            font-size: 11pt;
+            /* Standard readable PDF size */
+            line-height: 1.15;
+            /* Tighter line spacing typical in resumes */
+            color: #000000;
+            /* Pure black for print authenticity */
             margin: 0;
-            /* Margins are handled by the PDF generator */
+            padding: 0;
         }
 
-        /* Header styling */
+        /* Header section */
         .header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .header h1 {
-            font-size: 20pt;
-            margin: 0 0 5px 0;
+            font-size: 22pt;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+            padding: 0;
             letter-spacing: 0.5px;
         }
 
         .contact-info {
-            font-size: 9.5pt;
-            color: #333;
+            font-size: 10pt;
         }
 
         .contact-info a {
-            color: #333;
+            color: #000000;
             text-decoration: none;
         }
 
-        /* Section headings */
+        /* Section Headings (EXPERIENCE, PROJECTS, etc.) */
         h2 {
-            font-size: 11.5pt;
-            border-bottom: 1px solid #000;
+            font-size: 12pt;
+            font-weight: bold;
             text-transform: uppercase;
-            margin-top: 15px;
-            margin-bottom: 8px;
+            border-bottom: 1pt solid #000000;
+            margin-top: 12px;
+            margin-bottom: 6px;
             padding-bottom: 2px;
-            font-weight: 600;
         }
 
-        /* Experience and Project blocks */
+        /* Job & Project Headers */
         .item-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
             font-weight: bold;
+            font-size: 11pt;
             margin-bottom: 2px;
         }
 
         .item-sub {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            font-style: italic;
-            font-size: 10pt;
-            margin-bottom: 6px;
+            font-size: 11pt;
+            margin-bottom: 4px;
         }
 
-        /* Bullet points */
+        /* Bullet point styling */
         ul {
-            margin-top: 0;
-            padding-left: 20px;
-            margin-bottom: 12px;
+            margin-top: 2px;
+            margin-bottom: 8px;
+            padding-left: 18px;
+            /* Tighter bullet indentation */
         }
 
         li {
-            margin-bottom: 4px;
-            text-align: justify;
+            margin-bottom: 3px;
+            text-align: left;
         }
 
-        /* Skills table */
+        /* Skills Table (No borders, tight padding) */
         .skills-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            font-size: 11pt;
         }
 
         .skills-table td {
@@ -93,14 +97,13 @@
 
         .skill-category {
             font-weight: bold;
-            width: 15%;
+            width: 85px;
+            /* Fixed width to align colons perfectly */
         }
 
-        /* Utility */
+        /* Inline Tech Stack for Projects */
         .tech-stack {
-            font-style: italic;
-            font-size: 9.5pt;
-            color: #444;
+            font-size: 10.5pt;
             margin-bottom: 4px;
             display: block;
         }
@@ -112,14 +115,14 @@
     <div class="header">
         <h1>Maharshi Reddy Tangasani</h1>
         <div class="contact-info">
-            +91 9391677413 |
-            <a href="mailto:maharshireddythangasani@gmail.com">maharshireddythangasani@gmail.com</a> |
-            <a href="https://linkedin.com/in/maharshireddy">linkedin.com/in/maharshireddy</a> |
+            +919391677413 &nbsp;&bull;&nbsp;
+            <a href="mailto:maharshireddythangasani@gmail.com">maharshireddythangasani@gmail.com</a> &nbsp;&bull;&nbsp;
+            <a href="https://linkedin.com/in/maharshireddy">linkedin.com/in/maharshireddy</a> &nbsp;&bull;&nbsp;
             <a href="https://github.com/Sunnymaharshi">github.com/Sunnymaharshi</a>
         </div>
     </div>
 
-    <h2>Experience</h2>
+    <h2>EXPERIENCE</h2>
 
     <div>
         <div class="item-header">
@@ -161,14 +164,14 @@
         </ul>
     </div>
 
-    <h2>Projects</h2>
+    <h2>PROJECTS</h2>
 
     <div>
         <div class="item-header">
             <span>API Rate Limiter</span>
             <span><a href="https://github.com/Sunnymaharshi/python">github.com/Sunnymaharshi/python</a></span>
         </div>
-        <span class="tech-stack">Python, FastAPI, Redis, Lua, Docker, Prometheus, pytest</span>
+        <span class="tech-stack">Python FastAPI Redis Lua Docker Prometheus pytest</span>
         <ul>
             <li>Built 4 rate limiting algorithms (fixed window, sliding window, token bucket, leaky bucket) as pluggable
                 FastAPI middleware with a one-line @rate_limit decorator per-IP, per-API-key and per-user scoping.</li>
@@ -184,7 +187,7 @@
             <span>BlogForge - Full-Stack Blog Platform</span>
             <span><a href="https://github.com/Sunnymaharshi/python">github.com/Sunnymaharshi/python</a></span>
         </div>
-        <span class="tech-stack">FastAPI, PostgreSQL, SQLAlchemy, Alembic, Jinja2, OAuth2/JWT, Docker</span>
+        <span class="tech-stack">FastAPI PostgreSQL SQLAlchemy Alembic Jinja2 OAuth2/JWT Docker</span>
         <ul>
             <li>Built full-stack blog platform with Jinja2 SSR, SQLAlchemy ORM and Alembic migration pipeline – clean
                 schema versioning separate from application code.</li>
@@ -194,7 +197,7 @@
         </ul>
     </div>
 
-    <h2>Skills</h2>
+    <h2>SKILLS</h2>
     <table class="skills-table">
         <tr>
             <td class="skill-category">Frontend:</td>
@@ -206,7 +209,7 @@
             <td>FastAPI, Node.js, Express.js, SQLAlchemy, Alembic, OAuth2/JWT, REST APIs, PostgreSQL, BigQuery, SQL</td>
         </tr>
         <tr>
-            <td class="skill-category">Architecture:</td>
+            <td class="skill-category">Arch:</td>
             <td>Micro Frontends (Webpack Module Federation), PWAs, System Design, Core Web Vitals, Performance
                 Optimization</td>
         </tr>
@@ -220,7 +223,7 @@
         </tr>
     </table>
 
-    <h2>Education</h2>
+    <h2>EDUCATION</h2>
     <div class="item-header">
         <span>B.Tech in Computer Science</span>
         <span>Aug 2018 - May 2022</span>
@@ -230,7 +233,7 @@
         <span></span>
     </div>
 
-    <h2>Certifications</h2>
+    <h2>CERTIFICATIONS</h2>
     <ul>
         <li>AWS Certified Solutions Architect - Professional</li>
         <li>GCP Professional Cloud DevOps Engineer</li>
