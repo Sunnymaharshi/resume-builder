@@ -6,6 +6,79 @@
     <title>Maharshi Reddy Tangasani — Resume</title>
     <style>
         /* ============================================================
+     EMBEDDED FONT — Carlito (bundled in fonts/ folder)
+     Carlito is metric-compatible with Calibri, fully open-source,
+     and embedding it here means the resume renders IDENTICALLY
+     on every machine — no system font dependency, no install needed.
+     ============================================================ */
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-BoldItalic.ttf") format("truetype");
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* ============================================================
+     EMBEDDED FONT — Carlito (bundled in ./fonts/)
+     Carlito is metric-compatible with Calibri and is the de facto
+     ATS-safe standard. Bundling the .ttf files guarantees identical
+     rendering on every machine — no dependency on what's installed
+     on the system running this script.
+     ============================================================ */
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: "Carlito";
+            src: url("fonts/Carlito-BoldItalic.ttf") format("truetype");
+            font-weight: 700;
+            font-style: italic;
+            font-display: block;
+        }
+
+        /* ============================================================
      PAGE SETUP — A4 (595.28 x 841.89 pt)
      A4 is the global standard (Europe, Asia, India, Australia).
      Letter (US/Canada) is 612x792 — slightly wider but shorter.
@@ -26,7 +99,7 @@
 
         html,
         body {
-            font-family: "Carlito", "Calibri", sans-serif;
+            font-family: "Carlito";
             font-size: 10pt;
             color: #1C1C1C;
             -webkit-print-color-adjust: exact;
@@ -59,7 +132,7 @@
      SCON:  CAR 9.5pt, con color, center, leading 13, spaceAfter 5
      ============================================================ */
         .name {
-            font-family: "Carlito", "Calibri", sans-serif;
+            font-family: "Carlito";
             font-weight: 700;
             font-size: 22pt;
             line-height: 26pt;
