@@ -3,178 +3,315 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maharshi Reddy Tangasani - Resume</title>
+    <title>Maharshi Reddy Tangasani — Resume</title>
     <style>
-        /* Base document setup mimicking standard A4/Letter PDF print */
-        body {
-            font-family: 'Calibri', 'Arial', 'Helvetica', sans-serif;
-            font-size: 11pt;
-            /* Standard readable PDF size */
-            line-height: 1.15;
-            /* Tighter line spacing typical in resumes */
-            color: #000000;
-            /* Pure black for print authenticity */
+        /* ============================================================
+     PAGE SETUP
+     Matches ReportLab: US Letter (612 x 792 pt)
+     Margins: left/right 0.50in (36pt), top 0.45in (32.4pt),
+     bottom 0.36in (25.92pt)
+     ============================================================ */
+        @page {
+            size: letter;
+            margin: 32.4pt 36pt 25.92pt 36pt;
+            /* top right bottom left */
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        /* Header section */
-        .header {
-            text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .header h1 {
-            font-size: 22pt;
-            font-weight: bold;
-            margin: 0 0 4px 0;
-            padding: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-info {
+        html,
+        body {
+            font-family: "Carlito", "Calibri", sans-serif;
             font-size: 10pt;
+            color: #1C1C1C;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .contact-info a {
-            color: #000000;
-            text-decoration: none;
+        body {
+            width: 540pt;
+            /* 612 - 36*2, content width */
+            margin: 0 auto;
         }
 
-        /* Section Headings (EXPERIENCE, PROJECTS, etc.) */
-        h2 {
-            font-size: 12pt;
-            font-weight: bold;
+        /* ============================================================
+     COLOR PALETTE — exactly matches resume_final.py
+     ============================================================ */
+        :root {
+            --navy: #16325B;
+            --steel: #1D5FA6;
+            --teal: #0E7490;
+            --body: #1C1C1C;
+            --sub: #3A3A3A;
+            --muted: #6B7280;
+            --rule: #7A90A8;
+            --con: #4A5568;
+        }
+
+        /* ============================================================
+     HEADER
+     SNAME: CAR-Bold 22pt, navy, center, leading 26, spaceAfter 1
+     SCON:  CAR 9.5pt, con color, center, leading 13, spaceAfter 5
+     ============================================================ */
+        .name {
+            font-family: "Carlito", sans-serif;
+            font-weight: 700;
+            font-size: 22pt;
+            line-height: 26pt;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 1pt;
+        }
+
+        .contact {
+            font-size: 9.5pt;
+            line-height: 13pt;
+            color: var(--con);
+            text-align: center;
+            margin-bottom: 5pt;
+        }
+
+        /* ============================================================
+     SECTION HEADER
+     SSEC: CAR-Bold 10pt, steel, leading 13, spaceBefore 5(/2 for certs), spaceAfter 2
+     hr(): 0.6pt rule, color rule, spaceAfter 3
+     ============================================================ */
+        .section-title {
+            font-weight: 700;
+            font-size: 10pt;
+            line-height: 13pt;
+            color: var(--steel);
             text-transform: uppercase;
-            border-bottom: 1pt solid #000000;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            padding-bottom: 2px;
+            margin-top: 5pt;
+            margin-bottom: 2pt;
         }
 
-        /* Job & Project Headers */
-        .item-header {
+        /* First section (Experience) immediately after header — no extra top gap beyond contact's 5pt */
+        .section-title.first {
+            margin-top: 0;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 0.6pt solid var(--rule);
+            margin: 0 0 3pt 0;
+        }
+
+        /* ============================================================
+     TWO-COLUMN ROW (job/project title + date, education + date)
+     Uses flexbox to emulate ReportLab Table with VALIGN=TOP
+     ============================================================ */
+        .row {
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .row .left {
+            flex: 0 1 auto;
+        }
+
+        .row .right {
+            flex: 0 0 auto;
+            text-align: right;
+            white-space: nowrap;
+            padding-left: 8pt;
+        }
+
+        /* SJOB: CAR-Bold 11pt, navy, leading 14 */
+        .job-title,
+        .project-title {
+            font-weight: 700;
             font-size: 11pt;
-            margin-bottom: 2px;
+            line-height: 14pt;
+            color: var(--navy);
         }
 
-        .item-sub {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11pt;
-            margin-bottom: 4px;
+        /* SRIGHT: CAR 9.5pt, muted, right-aligned, leading 13 */
+        .date,
+        .right-text {
+            font-size: 9.5pt;
+            line-height: 13pt;
+            color: var(--muted);
         }
 
-        /* Bullet point styling */
-        ul {
-            margin-top: 2px;
-            margin-bottom: 8px;
-            padding-left: 18px;
-            /* Tighter bullet indentation */
+        /* SCOMP: CAR-Italic 9.2pt, muted, leading 12, spaceAfter 1 */
+        .location {
+            font-style: italic;
+            font-size: 9.2pt;
+            line-height: 12pt;
+            color: var(--muted);
+            margin-bottom: 1pt;
         }
 
-        li {
-            margin-bottom: 3px;
-            text-align: left;
+        /* SPTECH: CAR-Italic 9.2pt, teal, leading 13, spaceAfter 1 */
+        .tech-stack {
+            font-style: italic;
+            font-size: 9.2pt;
+            line-height: 13pt;
+            color: var(--teal);
+            margin-bottom: 1pt;
         }
 
-        /* Skills Table (No borders, tight padding) */
+        /* ============================================================
+     BULLETS
+     SBODY: CAR 10.5pt, sub color, leading 14, leftIndent 12, firstLineIndent -11, spaceAfter 1
+     Bullet char = "•\u2002" (bullet + em space)
+     ============================================================ */
+        .bullets {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bullets li {
+            font-size: 10.5pt;
+            line-height: 14pt;
+            color: var(--sub);
+            margin-bottom: 1pt;
+            padding-left: 12pt;
+            text-indent: -11pt;
+        }
+
+        .bullets li::before {
+            content: "\2022\2002";
+            /* • + em space */
+        }
+
+        /* SCERT: CAR 10pt, sub, leading 13.5, leftIndent 12, firstLineIndent -11, spaceAfter 0 */
+        .cert-bullets li {
+            font-size: 10pt;
+            line-height: 13.5pt;
+            color: var(--sub);
+            margin-bottom: 0;
+            padding-left: 12pt;
+            text-indent: -11pt;
+            list-style: none;
+        }
+
+        .cert-bullets li::before {
+            content: "\2022\2002";
+        }
+
+        /* ============================================================
+     SKILLS TABLE
+     skrow(): label col width 0.97in = 69.84pt, CAR-Bold 10pt label,
+     CAR 10pt value, leading 13.5, cell padding top/bottom 1pt
+     ============================================================ */
         .skills-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
-            font-size: 11pt;
         }
 
         .skills-table td {
-            padding: 2px 0;
+            font-size: 10pt;
+            line-height: 13.5pt;
+            color: var(--sub);
+            padding: 1pt 0;
             vertical-align: top;
         }
 
-        .skill-category {
-            font-weight: bold;
-            width: 85px;
-            /* Fixed width to align colons perfectly */
+        .skills-table td.label {
+            font-weight: 700;
+            color: var(--body);
+            width: 69.84pt;
+            white-space: nowrap;
+            padding-right: 4pt;
         }
 
-        /* Inline Tech Stack for Projects */
-        .tech-stack {
+        /* ============================================================
+     EDUCATION
+     SEDU: CAR 10.5pt (not bold), body color, leading 14
+     two_col with lw = BW * 0.76
+     ============================================================ */
+        .edu-title {
             font-size: 10.5pt;
-            margin-bottom: 4px;
-            display: block;
+            line-height: 14pt;
+            color: var(--body);
+            font-weight: 400;
+        }
+
+        /* ============================================================
+     BLOCK SPACING
+     SP(2 + gap) where gap = 4.4pt  =>  6.4pt margin-bottom
+     Applied after each job block, project block, skills block, education block
+     ============================================================ */
+        .block-gap {
+            margin-bottom: 6.4pt;
+        }
+
+        /* Prevent awkward page breaks (single page anyway, but keeps blocks intact if printed) */
+        .keep-together {
+            break-inside: avoid;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>Maharshi Reddy Tangasani</h1>
-        <div class="contact-info">
-            +919391677413 &nbsp;&bull;&nbsp;
-            <a href="mailto:maharshireddythangasani@gmail.com">maharshireddythangasani@gmail.com</a> &nbsp;&bull;&nbsp;
-            <a href="https://linkedin.com/in/maharshireddy">linkedin.com/in/maharshireddy</a> &nbsp;&bull;&nbsp;
-            <a href="https://github.com/Sunnymaharshi">github.com/Sunnymaharshi</a>
-        </div>
+    <!-- ================= HEADER ================= -->
+    <div class="name">Maharshi Reddy Tangasani</div>
+    <div class="contact">
+        +919391677413&nbsp;&nbsp;&middot;&nbsp;&nbsp;maharshireddythangasani@gmail.com&nbsp;&nbsp;&middot;&nbsp;&nbsp;linkedin.com/in/maharshireddy&nbsp;&nbsp;&middot;&nbsp;&nbsp;github.com/Sunnymaharshi
     </div>
 
-    <h2>EXPERIENCE</h2>
+    <!-- ================= EXPERIENCE ================= -->
+    <div class="section-title first">Experience</div>
+    <hr class="section-rule">
 
-    <div>
-        <div class="item-header">
-            <span>Software Engineer II - Hashedin</span>
-            <span>Hyderabad, India</span>
+    <div class="keep-together block-gap">
+        <div class="row">
+            <div class="left job-title">Software Engineer II — Hashedin</div>
+            <div class="right date">Oct 2023 – Present</div>
         </div>
-        <div class="item-sub">
-            <span></span>
-            <span>Oct 2023 - Present</span>
-        </div>
-        <ul>
+        <div class="location">Hyderabad, India</div>
+        <ul class="bullets">
             <li>Led 4 engineers shipping an enterprise data marketplace with Webpack Module Federation micro-frontends,
                 SSO and multi-cloud integration (AWS/Azure/GCP); drove 90%+ test coverage via TDD.</li>
-            <li>Built end-to-end data product lifecycle with role-based workflows and dynamic form validation - cut
+            <li>Built end-to-end data product lifecycle with role-based workflows and dynamic form validation — cut
                 onboarding time 3x for non-technical users.</li>
             <li>Cut initial JS bundle 45% via code splitting; Lighthouse CI budgets held Core Web Vitals at 85+ and
                 improved page load 20%.</li>
-            <li>Deployed GitHub Copilot & Claude Code across 20+ engineers with adoption guidelines - lifted team
+            <li>Deployed GitHub Copilot &amp; Claude Code across 20+ engineers with adoption guidelines — lifted team
                 velocity 40%.</li>
         </ul>
     </div>
 
-    <div>
-        <div class="item-header">
-            <span>Software Engineer I - Hashedin</span>
-            <span></span>
+    <div class="keep-together block-gap">
+        <div class="row">
+            <div class="left job-title">Software Engineer I — Hashedin</div>
+            <div class="right date">Aug 2022 – Sep 2023</div>
         </div>
-        <div class="item-sub">
-            <span></span>
-            <span>Aug 2022 - Sep 2023</span>
-        </div>
-        <ul>
-            <li>Owned frontend-backend integration for 3 squads via 15+ GCP serverless functions with automated CI/CD -
+        <ul class="bullets">
+            <li>Owned frontend-backend integration for 3 squads via 15+ GCP serverless functions with automated CI/CD —
                 eliminated manual deployment steps and cross-team integration bugs.</li>
-            <li>Redesigned checkout UX with progressive disclosure and actionable error messages – cut payment
+            <li>Redesigned checkout UX with progressive disclosure and actionable error messages — cut payment
                 abandonment 25%.</li>
-            <li>Audited keyboard navigation, focus management and ARIA across modal components – achieved WCAG 2.1 AA,
+            <li>Audited keyboard navigation, focus management and ARIA across modal components — achieved WCAG 2.1 AA,
                 eliminating 95% of accessibility issues.</li>
         </ul>
     </div>
 
-    <h2>PROJECTS</h2>
+    <!-- ================= PROJECTS ================= -->
+    <div class="section-title">Projects</div>
+    <hr class="section-rule">
 
-    <div>
-        <div class="item-header">
-            <span>API Rate Limiter</span>
-            <span><a href="https://github.com/Sunnymaharshi/python">github.com/Sunnymaharshi/python</a></span>
+    <div class="keep-together block-gap">
+        <div class="row">
+            <div class="left project-title">API Rate Limiter</div>
+            <div class="right right-text">github/api-rate-limiter</div>
         </div>
-        <span class="tech-stack">Python FastAPI Redis Lua Docker Prometheus pytest</span>
-        <ul>
+        <div class="tech-stack">Python &middot; FastAPI &middot; Redis &middot; Lua &middot; Docker &middot; Prometheus
+            &middot; pytest</div>
+        <ul class="bullets">
             <li>Built 4 rate limiting algorithms (fixed window, sliding window, token bucket, leaky bucket) as pluggable
-                FastAPI middleware with a one-line @rate_limit decorator per-IP, per-API-key and per-user scoping.</li>
+                FastAPI middleware with a one-line @rate_limit decorator — per-IP, per-API-key and per-user scoping.
+            </li>
             <li>Eliminated race conditions using atomic Redis Lua scripts (EVAL); verified zero over-admission under 500
                 concurrent asyncio requests across all algorithms.</li>
             <li>Shipped X-RateLimit-* headers, Prometheus metrics endpoint, live Chart.js dashboard, 79 unit tests and a
@@ -182,14 +319,15 @@
         </ul>
     </div>
 
-    <div>
-        <div class="item-header">
-            <span>BlogForge - Full-Stack Blog Platform</span>
-            <span><a href="https://github.com/Sunnymaharshi/python">github.com/Sunnymaharshi/python</a></span>
+    <div class="keep-together block-gap">
+        <div class="row">
+            <div class="left project-title">BlogForge — Full-Stack Blog Platform</div>
+            <div class="right right-text">github/blog-forge</div>
         </div>
-        <span class="tech-stack">FastAPI PostgreSQL SQLAlchemy Alembic Jinja2 OAuth2/JWT Docker</span>
-        <ul>
-            <li>Built full-stack blog platform with Jinja2 SSR, SQLAlchemy ORM and Alembic migration pipeline – clean
+        <div class="tech-stack">FastAPI &middot; PostgreSQL &middot; SQLAlchemy &middot; Alembic &middot; Jinja2
+            &middot; OAuth2/JWT &middot; Docker</div>
+        <ul class="bullets">
+            <li>Built full-stack blog platform with Jinja2 SSR, SQLAlchemy ORM and Alembic migration pipeline — clean
                 schema versioning separate from application code.</li>
             <li>Implemented OAuth2/JWT auth with bcrypt password hashing and HTTP-only cookies to prevent XSS token
                 theft.</li>
@@ -197,47 +335,52 @@
         </ul>
     </div>
 
-    <h2>SKILLS</h2>
-    <table class="skills-table">
+    <!-- ================= SKILLS ================= -->
+    <div class="section-title">Skills</div>
+    <hr class="section-rule">
+
+    <table class="skills-table block-gap">
         <tr>
-            <td class="skill-category">Frontend:</td>
+            <td class="label">Frontend:</td>
             <td>React.js, Next.js, TypeScript, Redux, TanStack Query, React Hook Form, GraphQL, Tailwind CSS, Storybook
             </td>
         </tr>
         <tr>
-            <td class="skill-category">Backend:</td>
+            <td class="label">Backend:</td>
             <td>FastAPI, Node.js, Express.js, SQLAlchemy, Alembic, OAuth2/JWT, REST APIs, PostgreSQL, BigQuery, SQL</td>
         </tr>
         <tr>
-            <td class="skill-category">Arch:</td>
+            <td class="label">Arch:</td>
             <td>Micro Frontends (Webpack Module Federation), PWAs, System Design, Core Web Vitals, Performance
                 Optimization</td>
         </tr>
         <tr>
-            <td class="skill-category">Testing:</td>
+            <td class="label">Testing:</td>
             <td>Jest, Vitest, React Testing Library, Playwright, Cypress, Lighthouse CI</td>
         </tr>
         <tr>
-            <td class="skill-category">DevOps:</td>
+            <td class="label">DevOps:</td>
             <td>Docker, Kubernetes, GitHub Actions, CI/CD, AWS, GCP (Cloud Functions, BigQuery), Webpack, Vite</td>
         </tr>
     </table>
 
-    <h2>EDUCATION</h2>
-    <div class="item-header">
-        <span>B.Tech in Computer Science</span>
-        <span>Aug 2018 - May 2022</span>
-    </div>
-    <div class="item-sub">
-        <span>Sree Vidyanikethan Engineering College, Tirupati</span>
-        <span></span>
+    <!-- ================= EDUCATION ================= -->
+    <div class="section-title">Education</div>
+    <hr class="section-rule">
+
+    <div class="row block-gap">
+        <div class="left edu-title">B.Tech in Computer Science — Sree Vidyanikethan Engineering College, Tirupati</div>
+        <div class="right date">Aug 2018 – May 2022</div>
     </div>
 
-    <h2>CERTIFICATIONS</h2>
-    <ul>
-        <li>AWS Certified Solutions Architect - Professional</li>
+    <!-- ================= CERTIFICATIONS ================= -->
+    <div class="section-title">Certifications</div>
+    <hr class="section-rule">
+
+    <ul class="cert-bullets">
+        <li>AWS Certified Solutions Architect – Professional</li>
         <li>GCP Professional Cloud DevOps Engineer</li>
-        <li>Generative AI RAG Framework - Google Cloud Skill Badge</li>
+        <li>Generative AI RAG Framework — Google Cloud Skill Badge</li>
     </ul>
 
 </body>

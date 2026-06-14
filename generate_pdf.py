@@ -1,38 +1,50 @@
-import os
+"""
+Render resume.html to a single-page PDF using Playwright (Chromium).
 
-from playwright.sync_api import sync_playwright
+The HTML file already defines exact page size and margins via @page CSS
+(US Letter, 0.5in sides, 0.45in top, 0.36in bottom) — Playwright's
+print_to_pdf with prefer_css_page_size honors these so no extra
+margin config is needed here.
+
+Usage:
+    python3 resume_pdf.py
+Output:
+    /mnt/user-data/outputs/Maharshi_Reddy_Resume_html.pdf
+"""
+
+import asyncio
+from pathlib import Path
+
+from playwright.async_api import async_playwright
+
+HTML_PATH = Path(__file__).parent / "resume.html"
+OUT_PATH = Path(__file__).parent / "Maharshi_Reddy_Resume.pdf"
 
 
-def html_to_pdf(html_filename, output_pdf_filename):
-    print("Launching headless browser...")
-    with sync_playwright() as p:
-        # Launch Chromium in headless mode
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+async def main():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
 
-        # Construct the absolute path to your local HTML file
-        absolute_path = os.path.abspath(html_filename)
-        file_url = f"file://{absolute_path}"
+        # Load the HTML file directly from disk
+        await page.goto(f"file://{HTML_PATH.resolve()}")
 
-        print(f"Loading {html_filename}...")
-        page.goto(file_url)
+        # Wait for fonts to load so measurements are accurate
+        await page.evaluate("document.fonts.ready")
 
-        # Generate the PDF with standard resume dimensions and margins
-        page.pdf(
-            path=output_pdf_filename,
-            format="A4",
+        # print_to_pdf with prefer_css_page_size=True uses the @page rule
+        # in the CSS for page size and margins — matches the ReportLab
+        # layout exactly (Letter, 0.5in sides, 0.45in top, 0.36in bottom)
+        await page.pdf(
+            path=str(OUT_PATH),
+            prefer_css_page_size=True,
             print_background=True,
-            margin={
-                "top": "0.5in",
-                "right": "0.5in",
-                "bottom": "0.5in",
-                "left": "0.5in",
-            },
         )
 
-        browser.close()
-        print(f"Success! Resume saved to {output_pdf_filename}")
+        await browser.close()
+
+    print(f"Saved: {OUT_PATH}")
 
 
 if __name__ == "__main__":
-    html_to_pdf("resume.html", "Maharshi_Reddy_Resume.pdf")
+    asyncio.run(main())
