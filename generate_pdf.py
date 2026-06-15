@@ -12,7 +12,7 @@ is needed here.
 
 Folder structure required:
     resume.html
-    resume_pdf.py
+    generate_pdf.py
     fonts/
         Carlito-Regular.ttf
         Carlito-Bold.ttf
@@ -20,7 +20,7 @@ Folder structure required:
         Carlito-BoldItalic.ttf
 
 Usage:
-    python3 resume_pdf.py
+    python3 generate_pdf.py
 Output:
     Maharshi_Reddy_Resume.pdf (next to this script)
 """

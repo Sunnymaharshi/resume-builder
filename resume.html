@@ -20,7 +20,7 @@ HOW TO EDIT CONTENT
   - Each resume entry (job, project, education, certification) is a
     self-contained <div> or <li>. Find the text you want to change by
     searching for a unique word from it, edit in place, save, and
-    re-run `python3 resume_pdf.py`.
+    re-run `python3 generate_pdf.py`.
   - To ADD a new job/project: copy an entire
         <div class="keep-together block-gap"> ... </div>
     block (e.g. the "Software Engineer I" block), paste it where you
@@ -40,7 +40,7 @@ HOW TO ADJUST SPACING / FIT ON ONE PAGE
                         (the "leading") and margin-bottom
   If content overflows to page 2, REDUCE these values slightly (try
   -0.5pt to -1pt steps). If there's empty space at the bottom, you can
-  INCREASE them. After any change, run `python3 resume_pdf.py` — it
+  INCREASE them. After any change, run `python3 generate_pdf.py` — it
   prints the final page count so you know immediately if it fits.
 
 FONTS
@@ -67,11 +67,11 @@ COLOR PALETTE
      considered an ATS-safe standard font. Bundling the .ttf files
      here guarantees identical rendering on every machine — no
      dependency on what fonts are installed on the system running
-     resume_pdf.py.
+     generate_pdf.py.
      font-display: block makes the browser WAIT for these files to
      load before painting text, so Playwright measures text using
      the correct font every time (combined with `document.fonts.ready`
-     in resume_pdf.py).
+     in generate_pdf.py).
      ============================================================ */
         @font-face {
             font-family: "Carlito";

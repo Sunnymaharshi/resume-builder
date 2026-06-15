@@ -8,7 +8,7 @@ to PDF with Playwright (Chromium). Edit the HTML, run one script, get a PDF.
 ```
 resume-project/
 ├── resume.html              ← all content + styling (edit this)
-├── resume_pdf.py             ← run this to generate the PDF
+├── generate_pdf.py             ← run this to generate the PDF
 ├── README.md                 ← this file
 ├── fonts/
 │   ├── Carlito-Regular.ttf
@@ -31,7 +31,7 @@ page count after generation.
 ## Generate the PDF
 
 ```bash
-python3 resume_pdf.py
+python3 generate_pdf.py
 ```
 
 Output:
@@ -51,7 +51,7 @@ explaining the structure — but the short version:
 
 - **Change text**: find the sentence you want to edit (search for a
   unique word from it) and edit it directly inside the `<li>`, `<div>`,
-  etc. Save, re-run `python3 resume_pdf.py`.
+  etc. Save, re-run `python3 generate_pdf.py`.
 
 - **Add a job or project**: copy an entire block that looks like this:
 
@@ -80,7 +80,7 @@ explaining the structure — but the short version:
 ## Fitting on one page
 
 All spacing is controlled by a handful of CSS rules near the top of the
-`<style>` block. If `resume_pdf.py` reports 2 pages, search for these
+`<style>` block. If `generate_pdf.py` reports 2 pages, search for these
 class names and reduce the values slightly (try -0.5pt to -1pt at a
 time), then re-run:
 
