@@ -4,47 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Maharshi Reddy Tangasani — Resume</title>
+    <!--
+================================================================================
+ RESUME.HTML — Single-page A4 resume, designed for Playwright PDF export
+================================================================================
+
+HOW THIS FILE IS ORGANIZED
+  1. <style> block (below) — all visual styling, organized into labeled
+     sections: fonts, page setup, color palette, then one block per
+     resume section (header, experience, projects, skills, etc.)
+  2. <body> (bottom of file) — the actual resume content, in the same
+     order as the styles above.
+
+HOW TO EDIT CONTENT
+  - Each resume entry (job, project, education, certification) is a
+    self-contained <div> or <li>. Find the text you want to change by
+    searching for a unique word from it, edit in place, save, and
+    re-run `python3 resume_pdf.py`.
+  - To ADD a new job/project: copy an entire
+        <div class="keep-together block-gap"> ... </div>
+    block (e.g. the "Software Engineer I" block), paste it where you
+    want the new entry, and edit the text inside.
+  - To ADD a skill row: copy one <tr>...</tr> inside .skills-table
+    and edit the label/value.
+  - To ADD a certification: copy one <li>...</li> inside .cert-bullets.
+
+HOW TO ADJUST SPACING / FIT ON ONE PAGE
+  All spacing is controlled by a small number of CSS rules — search
+  for these class names to tweak global spacing:
+    .section-title   → space ABOVE each section heading (EXPERIENCE,
+                        PROJECTS, SKILLS, etc.) via margin-top
+    .block-gap       → space AFTER each job/project/education block
+                        via margin-bottom
+    .bullets li      → space between bullet lines via line-height
+                        (the "leading") and margin-bottom
+  If content overflows to page 2, REDUCE these values slightly (try
+  -0.5pt to -1pt steps). If there's empty space at the bottom, you can
+  INCREASE them. After any change, run `python3 resume_pdf.py` — it
+  prints the final page count so you know immediately if it fits.
+
+FONTS
+  Uses Carlito (open-source, metric-compatible with Microsoft Calibri)
+  embedded via @font-face from the bundled fonts/ folder. This means
+  the resume renders identically on any machine — no font installation
+  required. See README.md for details.
+
+PAGE SIZE
+  A4 by default (the global standard outside US/Canada). To switch to
+  US Letter, change `size: A4;` to `size: letter;` in the @page rule
+  below — Letter is wider, so it will still fit on one page.
+
+COLOR PALETTE
+  All colors are defined once as CSS variables in :root (see "COLOR
+  PALETTE" section below) and referenced everywhere via var(--name).
+  Change a color in one place to re-theme the entire resume.
+================================================================================
+-->
     <style>
         /* ============================================================
-     EMBEDDED FONT — Carlito (bundled in fonts/ folder)
-     Carlito is metric-compatible with Calibri, fully open-source,
-     and embedding it here means the resume renders IDENTICALLY
-     on every machine — no system font dependency, no install needed.
-     ============================================================ */
-        @font-face {
-            font-family: "Carlito";
-            src: url("fonts/Carlito-Regular.ttf") format("truetype");
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "Carlito";
-            src: url("fonts/Carlito-Bold.ttf") format("truetype");
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "Carlito";
-            src: url("fonts/Carlito-Italic.ttf") format("truetype");
-            font-weight: 400;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: "Carlito";
-            src: url("fonts/Carlito-BoldItalic.ttf") format("truetype");
-            font-weight: 700;
-            font-style: italic;
-        }
-
-        /* ============================================================
      EMBEDDED FONT — Carlito (bundled in ./fonts/)
-     Carlito is metric-compatible with Calibri and is the de facto
-     ATS-safe standard. Bundling the .ttf files guarantees identical
-     rendering on every machine — no dependency on what's installed
-     on the system running this script.
+     Carlito is metric-compatible with Microsoft Calibri and is
+     considered an ATS-safe standard font. Bundling the .ttf files
+     here guarantees identical rendering on every machine — no
+     dependency on what fonts are installed on the system running
+     resume_pdf.py.
+     font-display: block makes the browser WAIT for these files to
+     load before painting text, so Playwright measures text using
+     the correct font every time (combined with `document.fonts.ready`
+     in resume_pdf.py).
      ============================================================ */
         @font-face {
             font-family: "Carlito";
@@ -327,6 +354,32 @@
 </head>
 
 <body>
+    <!--
+================================================================================
+ CONTENT SECTIONS
+================================================================================
+ Order: Header → Experience → Projects → Skills → Education → Certifications
+
+ Each "entry" (a job, a project) follows this pattern:
+
+   <div class="keep-together block-gap">
+     <div class="row">                                <- title + date row
+       <div class="left job-title">...</div>
+       <div class="right date">...</div>
+     </div>
+     <div class="location">...</div>                  <- optional, italic gray
+     <ul class="bullets">
+       <li>...</li>                                    <- one per bullet point
+     </ul>
+   </div>
+
+ .keep-together  → tells the browser not to split this block across pages
+ .block-gap      → adds the standard gap AFTER this block (see <style> docs)
+
+ For PROJECTS, ".location" is replaced with ".tech-stack" (teal, italic) and
+ ".project-title" is used instead of ".job-title" (same styling either way).
+================================================================================
+-->
 
     <!-- ================= HEADER ================= -->
     <div class="name">Maharshi Reddy Tangasani</div>
