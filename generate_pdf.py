@@ -48,11 +48,14 @@ async def main():
 
         # print_to_pdf with prefer_css_page_size=True uses the @page rule
         # in the CSS for page size and margins — A4, 0.5in sides,
-        # 0.45in top, 0.4in bottom
+        # 0.45in top, 0.4in bottom.
+        # tagged=True embeds link annotations so hyperlinks are
+        # clickable in the exported PDF (requires Playwright >= 1.40)
         await page.pdf(
             path=str(OUT_PATH),
             prefer_css_page_size=True,
             print_background=True,
+            tagged=True,
         )
 
         await browser.close()
