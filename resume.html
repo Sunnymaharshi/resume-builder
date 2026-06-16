@@ -325,6 +325,19 @@ COLOR PALETTE
             padding-right: 4pt;
         }
 
+        /* Clickable links — preserve existing text style, add pointer */
+        a.contact-link,
+        a.project-link {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a.contact-link:hover,
+        a.project-link:hover {
+            cursor: pointer;
+        }
+
         /* ============================================================
      EDUCATION
      SEDU: CAR 10.5pt (not bold), body color, leading 14
@@ -384,7 +397,11 @@ COLOR PALETTE
     <!-- ================= HEADER ================= -->
     <div class="name">Maharshi Reddy Tangasani</div>
     <div class="contact">
-        +919391677413&nbsp;&nbsp;&middot;&nbsp;&nbsp;maharshireddythangasani@gmail.com&nbsp;&nbsp;&middot;&nbsp;&nbsp;linkedin.com/in/maharshireddy&nbsp;&nbsp;&middot;&nbsp;&nbsp;github.com/Sunnymaharshi
+        +91 93916
+        77413&nbsp;&nbsp;&middot;&nbsp;&nbsp;maharshireddythangasani@gmail.com&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a
+            class="contact-link" target="_blank"
+            href="https://linkedin.com/in/maharshireddy">linkedin.com/in/maharshireddy</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a
+            class="contact-link" target="_blank" href="https://github.com/Sunnymaharshi">github.com/Sunnymaharshi</a>
     </div>
 
     <!-- ================= EXPERIENCE ================= -->
@@ -394,9 +411,8 @@ COLOR PALETTE
     <div class="keep-together block-gap">
         <div class="row">
             <div class="left job-title">Software Engineer II — Hashedin</div>
-            <div class="right date">Oct 2023 – Present</div>
+            <div class="right date">Oct 2023 – Present &nbsp;&middot;&nbsp; Hyderabad, India</div>
         </div>
-        <div class="location">Hyderabad, India</div>
         <ul class="bullets">
             <li>Led 4 engineers shipping an enterprise data marketplace with Webpack Module Federation micro-frontends,
                 SSO and multi-cloud integration (AWS/Azure/GCP); drove 90%+ test coverage via TDD.</li>
@@ -412,7 +428,7 @@ COLOR PALETTE
     <div class="keep-together block-gap">
         <div class="row">
             <div class="left job-title">Software Engineer I — Hashedin</div>
-            <div class="right date">Aug 2022 – Sep 2023</div>
+            <div class="right date">Aug 2022 – Sep 2023 &nbsp;&middot;&nbsp; Bangalore, India</div>
         </div>
         <ul class="bullets">
             <li>Owned frontend-backend integration for 3 squads via 15+ GCP serverless functions with automated CI/CD —
@@ -431,7 +447,9 @@ COLOR PALETTE
     <div class="keep-together block-gap">
         <div class="row">
             <div class="left project-title">API Rate Limiter</div>
-            <div class="right right-text">github.com/Sunnymaharshi/python</div>
+            <div class="right right-text"><a class="project-link" target="_blank"
+                    href="https://github.com/Sunnymaharshi/python/tree/main/fast-api/api-rate-limiter">View on
+                    GitHub</a></div>
         </div>
         <div class="tech-stack">Python &middot; FastAPI &middot; Redis &middot; Lua &middot; Docker &middot; Prometheus
             &middot; pytest</div>
@@ -449,7 +467,9 @@ COLOR PALETTE
     <div class="keep-together block-gap">
         <div class="row">
             <div class="left project-title">BlogForge — Full-Stack Blog Platform</div>
-            <div class="right right-text">github.com/Sunnymaharshi/python</div>
+            <div class="right right-text"><a class="project-link" target="_blank"
+                    href="https://github.com/Sunnymaharshi/python/tree/main/fast-api/blog-site">View on
+                    GitHub</a></div>
         </div>
         <div class="tech-stack">FastAPI &middot; PostgreSQL &middot; SQLAlchemy &middot; Alembic &middot; Jinja2
             &middot; OAuth2/JWT &middot; Docker</div>
