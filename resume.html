@@ -187,7 +187,7 @@ COLOR PALETTE
             line-height: 13pt;
             color: var(--steel);
             text-transform: uppercase;
-            margin-top: 6pt;
+            margin-top: 4pt;
             margin-bottom: 2pt;
         }
 
@@ -367,7 +367,7 @@ COLOR PALETTE
      Applied after each job block, project block, skills block, education block
      ============================================================ */
         .block-gap {
-            margin-bottom: 4pt;
+            margin-bottom: 2pt;
         }
 
         /* Prevent awkward page breaks (single page anyway, but keeps blocks intact if printed) */
@@ -419,9 +419,10 @@ COLOR PALETTE
     <div class="section-title first">Summary</div>
     <hr class="section-rule">
     <p class="summary block-gap">Frontend engineer with full-stack reach and 4+ years of experience building enterprise
-        data marketplace platforms and e-commerce applications. Has shipped consistent improvements to performance, test
+        data marketplace platforms and e-commerce applications. Experienced in AI-integrated systems including RAG
+        pipelines, LangGraph agents, and vector search. Has shipped consistent improvements to performance, test
         coverage, and team productivity through structured AI tooling adoption. Takes ownership from architecture
-        decisions through to production, with a strong focus on clean code and accessibility.</p>
+        decisions through to production. </p>
 
     <!-- ================= EXPERIENCE ================= -->
     <div class="section-title">Experience</div>
@@ -433,14 +434,17 @@ COLOR PALETTE
             <div class="right date">Oct 2023 – Present &nbsp;&middot;&nbsp; Hyderabad, India</div>
         </div>
         <ul class="bullets">
-            <li>Led 4 engineers shipping an enterprise data marketplace with Webpack Module Federation micro-frontends,
-                SSO and multi-cloud integration (AWS/Azure/GCP); drove 90%+ test coverage via TDD.</li>
-            <li>Built end-to-end data product lifecycle with role-based workflows and dynamic form validation — cut
-                onboarding time 3x for non-technical users.</li>
-            <li>Cut initial JS bundle 45% via code splitting; Lighthouse CI budgets held Core Web Vitals at 85+ and
-                improved page load 20%.</li>
-            <li>Deployed GitHub Copilot &amp; Claude Code across 20+ engineers with adoption guidelines — lifted team
-                velocity 40%.</li>
+            <li>Led 4 engineers on an enterprise data marketplace with micro-frontends, including an AI chat interface
+                that generates metric definitions from data products for non-technical users.</li>
+
+            <li>Built the full data product lifecycle from scratch covering role-based workflows, permissions, and
+                dynamic form validation with real-time error feedback. Reduced data product onboarding time by 3x. </li>
+
+            <li>Reduced JS bundle size by 45% through code splitting and lazy loading, set up Lighthouse CI budgets that
+                kept Core Web Vitals above 85 and brought page load time down by 20%.</li>
+
+            <li>Introduced GitHub Copilot and Claude Code across the team with adoption guidelines, increasing team
+                velocity.</li>
         </ul>
     </div>
 
@@ -450,18 +454,42 @@ COLOR PALETTE
             <div class="right date">Aug 2022 – Sep 2023 &nbsp;&middot;&nbsp; Bangalore, India</div>
         </div>
         <ul class="bullets">
-            <li>Owned frontend-backend integration for 3 squads via 15+ GCP serverless functions with automated CI/CD —
-                eliminated manual deployment steps and cross-team integration bugs.</li>
-            <li>Redesigned checkout UX with progressive disclosure and actionable error messages — cut payment
-                abandonment 25%.</li>
-            <li>Audited keyboard navigation, focus management and ARIA across modal components — achieved WCAG 2.1 AA,
-                eliminating 95% of accessibility issues.</li>
+            <li>Built and deployed 15+ GCP serverless functions with GitHub Actions CI/CD, eliminating manual
+                deployments and streamlining frontend-backend integration.</li>
+            <li>Redesigned checkout UX with progressive disclosure, reducing payment
+                abandonment by 15%.</li>
+            <li>Fixed keyboard navigation, focus management, and ARIA across modal components to meet WCAG 2.1 AA,
+                resolving 95% of accessibility issues.</li>
         </ul>
     </div>
 
     <!-- ================= PROJECTS ================= -->
     <div class="section-title">Projects</div>
     <hr class="section-rule">
+
+    <div class="keep-together block-gap">
+        <div class="row">
+            <div class="left project-title">Codesense — AI Developer Profiler</div>
+            <div class="right right-text"><a class="project-link" href="https://github.com/Sunnymaharshi/codesense">View
+                    on GitHub</a></div>
+        </div>
+        <div class="tech-stack">LangGraph &middot; PostgreSQL + pgvector &middot;
+            Celery &middot; FastAPI &middot; React &middot; Redis &middot; Groq &middot;
+            fastembed</div>
+        <ul class="bullets">
+            <li>Indexed all repos in parallel using celery.group and streamed live progress through Redis pub/sub to a
+                WebSocket. Each repo is health-graded A/B/C across 13 signals: tests, CI, Docker, license, and commit
+                activity.</li>
+
+            <li>Built a RAG pipeline over source code: fastembed embeds questions locally at zero API cost, pgvector
+                retrieves the top 8 chunks, and Groq llama-3.3-70b streams JSON over SSE with a character-by-character
+                typing effect.</li>
+
+            <li>Wrote a 4-node LangGraph agent that pre-computes skill scores at index time with zero LLM tokens. Scores
+                feed into every RAG prompt and model JSON drives a React component registry of commit heatmaps, skill
+                radars, and timelines.</li>
+        </ul>
+    </div>
 
     <div class="keep-together block-gap">
         <div class="row">
@@ -474,32 +502,16 @@ COLOR PALETTE
             &middot; pytest</div>
         <ul class="bullets">
             <li>Built 4 rate limiting algorithms (fixed window, sliding window, token bucket, leaky bucket) as pluggable
-                FastAPI middleware with a one-line @rate_limit decorator — per-IP, per-API-key and per-user scoping.
+                FastAPI middleware with a @rate_limit decorator supporting per-IP, per-API-key, and per-user scoping.
             </li>
-            <li>Eliminated race conditions using atomic Redis Lua scripts (EVAL); verified zero over-admission under 500
+            <li>Eliminated race conditions using atomic Redis Lua scripts and verified zero over-admission under 500
                 concurrent asyncio requests across all algorithms.</li>
-            <li>Shipped X-RateLimit-* headers, Prometheus metrics endpoint, live Chart.js dashboard, 79 unit tests and a
-                Locust load test suite.</li>
+            <li>Shipped a Prometheus metrics endpoint and live Chart.js dashboard alongside 79 unit tests and a Locust
+                load test suite.</li>
         </ul>
     </div>
 
-    <div class="keep-together block-gap">
-        <div class="row">
-            <div class="left project-title">BlogForge — Full-Stack Blog Platform</div>
-            <div class="right right-text"><a class="project-link"
-                    href="https://github.com/Sunnymaharshi/python/tree/main/fast-api/blog-site">View on
-                    GitHub</a></div>
-        </div>
-        <div class="tech-stack">FastAPI &middot; PostgreSQL &middot; SQLAlchemy &middot; Alembic &middot; Jinja2
-            &middot; OAuth2/JWT &middot; Docker</div>
-        <ul class="bullets">
-            <li>Built full-stack blog platform with Jinja2 SSR, SQLAlchemy ORM and Alembic migration pipeline — clean
-                schema versioning separate from application code.</li>
-            <li>Implemented OAuth2/JWT auth with bcrypt password hashing and HTTP-only cookies to prevent XSS token
-                theft.</li>
-            <li>Dockerised app and database with Compose; CI pipeline auto-runs Alembic migrations on every deploy.</li>
-        </ul>
-    </div>
+
 
     <!-- ================= SKILLS ================= -->
     <div class="section-title">Skills</div>
@@ -508,26 +520,24 @@ COLOR PALETTE
     <table class="skills-table block-gap">
         <tr>
             <td class="label">Frontend:</td>
-            <td>React.js, Next.js, TypeScript, Redux, TanStack Query, React Hook Form, GraphQL, Tailwind CSS
-            </td>
+            <td>JavaScript, TypeScript, React.js, Next.js, Redux, Zustand, TanStack Query, React Hook Form, GraphQL</td>
         </tr>
         <tr>
             <td class="label">Backend:</td>
-            <td>FastAPI, Node.js, Express.js, Redis, SQLAlchemy, Alembic, OAuth2/JWT, REST APIs, PostgreSQL, SQL
-            </td>
+            <td>FastAPI, Node.js, Express.js, PostgreSQL, Redis, SQLAlchemy, Alembic, Celery, asyncio, WebSockets,
+                OAuth2/JWT</td>
         </tr>
         <tr>
             <td class="label">Architecture:</td>
-            <td>Micro Frontends, PWAs, Core Web Vitals, Performance
-                Optimization, Lighthouse</td>
+            <td>LangGraph, RAG pipelines, pgvector, Micro Frontends, PWAs, Performance Optimization, Lighthouse</td>
         </tr>
         <tr>
             <td class="label">Testing & build:</td>
-            <td>Jest, React Testing Library, Playwright, Cypress, Webpack, Vite</td>
+            <td>Jest, React Testing Library, Playwright, Cypress, Pytest, Locust, Prometheus, Webpack, Vite</td>
         </tr>
         <tr>
             <td class="label">DevOps:</td>
-            <td>Docker, Kubernetes, GitHub Actions, CI/CD, AWS, GCP</td>
+            <td>Docker, Kubernetes, GitHub Actions, CI/CD, AWS, GCP </td>
         </tr>
     </table>
 
